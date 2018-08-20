@@ -16,4 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/atividades', 'AtividadeController@index');
+Route::get('/atividades/{id}', 'AtividadeController@show');
+Route::get('/mensagens', 'MensagemController@index');
+
 
