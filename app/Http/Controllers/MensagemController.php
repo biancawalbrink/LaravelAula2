@@ -45,9 +45,10 @@ class MensagemController extends Controller
      * @param  \App\Mensagem  $mensagem
      * @return \Illuminate\Http\Response
      */
-    public function show(Mensagem $mensagem)
+    public function show($id)
     {
-        //
+        $mensagem = Mensagem::find($id);
+        return view('mensagens.show',['mensagem' => $mensagem]);
     }
 
     /**
