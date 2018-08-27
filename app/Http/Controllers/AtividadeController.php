@@ -62,7 +62,7 @@ class AtividadeController extends Controller
         $obj_Atividade = new Atividade();
         $obj_Atividade->title =       $request['title'];
         $obj_Atividade->description = $request['description'];
-        $obj_Atividade->scheduledto = '2018-01-01 10:00:00'; //$request['scheduledto'];
+        $obj_Atividade->scheduledto = $request['scheduledto'];
         $obj_Atividade->save();
         return redirect('/atividades')->with('success', 'Atividade criada com sucesso!!');
     }

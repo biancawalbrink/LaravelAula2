@@ -21,5 +21,13 @@ Route::get('/atividades', 'AtividadeController@index');
 Route::get('/atividades/{id}', 'AtividadeController@show');
 Route::get('/mensagens', 'MensagemController@index');
 Route::get('/mensagens/{id}', 'MensagemController@show');
+Route::post('/mensagens','MensagemController@store');
+Route::get('/mensagens/create','MensagemController@create');
+
+
+
+
+
+
 
 

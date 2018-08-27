@@ -25,7 +25,7 @@ class MensagemController extends Controller
      */
     public function create()
     {
-        //
+        return view('mensagem.create');
     }
 
     /**
