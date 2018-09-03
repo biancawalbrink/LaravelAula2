@@ -2,13 +2,13 @@
 <hr>
 
 <!-- EXIBE MENSAGENS DE SUCESSO -->
-  <!-- @if(\Session::has('success'))
+   @if(\Session::has('success'))
 	<div class="container">
   		<div class="alert alert-success">
     		{{\Session::get('success')}}
   		</div>
   	</div>
-  @endif -->
+  @endif 
 
 
 @foreach($atividades as $atividade)
