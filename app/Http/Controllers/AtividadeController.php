@@ -141,4 +141,9 @@ class AtividadeController extends Controller
     {
         //
     }
+    public function delete($id)
+    {
+      $obj_Atividade = Atividade::find($id);
+        return view('atividade.delete',['atividade' => $obj_Atividade]);
+    }
 }
