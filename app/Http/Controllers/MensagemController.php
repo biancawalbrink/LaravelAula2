@@ -38,7 +38,34 @@ class MensagemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //faço as validações dos campos
+        //vetor com as mensagens de erro
+        $messages = array(
+            'titulo.required' => 'É obrigatório um título para a mensagem',
+            'descricao.required' => 'É obrigatória uma descrição para a mensagem',
+            'autor.required' => 'É obrigatório o cadastro da data/hora da mensagem',
+        );
+        //vetor com as especificações de validações
+        $regras = array(
+            'titulo' => 'required|string|max:255',
+            'descricao' => 'required',
+            'autor' => 'required|string',
+        );
+        //cria o objeto com as regras de validação
+        $validador = Validator::make($request->all(), $regras, $messages);
+        //executa as validações
+        if ($validador->fails()) {
+            return redirect("mensagens/$id/edit")
+            ->withErrors($validador)
+            ->withInput($request->all);
+        }
+        //se passou pelas validações, processa e salva no banco...
+        $obj_mensagens = new Mensagem;
+        $obj_mensagens->titulo =       $request['titulo'];
+        $obj_mensagens->descricao = $request['descricao'];
+        $obj_mensagens->autor = $request['autor'];
+        $obj_mensagens->save();
+        return redirect('/mensagens')->with('success', 'Mensagem alterada com sucesso!!');
     }
 
     /**
@@ -112,8 +139,12 @@ class MensagemController extends Controller
      */
     public function destroy($id)
     {
-        //
+         $obj_mensagens = Mensagem::find($id);
+         $obj_mensagens->delete($id);
+         return redirect('/mensagens')->with('success','Mensagem excluída com sucesso!!'); 
     }
+
+
     public function delete($id)
     {
       $obj_Mensagem = Mensagem::find($id);

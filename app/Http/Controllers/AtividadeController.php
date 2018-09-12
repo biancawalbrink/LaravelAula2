@@ -98,7 +98,7 @@ class AtividadeController extends Controller
      * @param  \App\Atividade  $atividade
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Atividade $atividade)
+    public function update(Request $request, $id)
     {
         //faço as validações dos campos
         //vetor com as mensagens de erro
@@ -117,7 +117,7 @@ class AtividadeController extends Controller
         $validador = Validator::make($request->all(), $regras, $messages);
         //executa as validações
         if ($validador->fails()) {
-            return redirect('atividades/$id/edit')
+            return redirect("atividades/$id/edit")
             ->withErrors($validador)
             ->withInput($request->all);
         }
@@ -129,7 +129,7 @@ class AtividadeController extends Controller
         $obj_atividade->save();
         return redirect('/atividades')->with('success', 'Atividade alterada com sucesso!!');
     }
-    }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -137,13 +137,19 @@ class AtividadeController extends Controller
      * @param  \App\Atividade  $atividade
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Atividade $atividade)
+    public function destroy($id)
     {
-        //
+        $obj_atividade = Atividade::find($id);
+        $obj_atividade->delete($id);
+        return redirect('/atividades')->with('success','Atividade excluída com sucesso!!'); 
     }
+
+
     public function delete($id)
     {
       $obj_Atividade = Atividade::find($id);
         return view('atividade.delete',['atividade' => $obj_Atividade]);
     }
 }
+
+
