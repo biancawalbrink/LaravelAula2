@@ -59,3 +59,7 @@ Route::delete('/mensagens/{id}','MensagemController@destroy');
 
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
