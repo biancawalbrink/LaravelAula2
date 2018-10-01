@@ -21,6 +21,4 @@
      <br>
 @endforeach
 
-<br>
-<br>
-<a href="/mensagens/create">Criar Mensagem</a>
+{{ $mensagens->links() }}

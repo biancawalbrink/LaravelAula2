@@ -16,7 +16,12 @@ class MensagemController extends Controller
      */
     public function index()
     {
-        $listaMensagens = Mensagem::all();
+        if(Auth::check()){
+          $listaMensagens = Mensagem::where('user_id', Auth::id())->paginate(3);
+      }else{
+         $listaMensagens = Mensagem::paginate(3);
+      }
+        
         return view('mensagens.list',['mensagens' => $listaMensagens]);
     }
 
@@ -64,6 +69,8 @@ class MensagemController extends Controller
         $obj_mensagens->titulo =       $request['titulo'];
         $obj_mensagens->descricao = $request['descricao'];
         $obj_mensagens->autor = $request['autor'];
+        $obj_mensagens->user_id = Auth::id();
+        $obj_mensagens->atividade_id = $request['atividade_id']
         $obj_mensagens->save();
         return redirect('/mensagens')->with('success', 'Mensagem alterada com sucesso!!');
     }
