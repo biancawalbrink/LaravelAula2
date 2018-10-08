@@ -1,5 +1,10 @@
 <h1>Lista de Atividades</h1>
 <hr>
+@extends('layouts.app')
+
+@section('content')
+<p class="h1 text-center">Lista de Atividades</p>
+
 
 <!-- EXIBE MENSAGENS DE SUCESSO -->
    @if(\Session::has('success'))
@@ -31,7 +36,13 @@
 
 @auth
   <p><a href="/atividades/create">Criar novo registro</a></p>
+</div>
+</div>
+</div>
 @endauth
+
+@endsection
+
 
 
 
